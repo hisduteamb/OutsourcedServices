@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Repositories;
@@ -10,6 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 {
     var services = builder.Services;
     var env = builder.Environment;
+
+    builder.Services.AddControllers();
+
+   
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    
 
     services.AddCors();
 
@@ -24,6 +33,12 @@ var builder = WebApplication.CreateBuilder(args);
         options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
     });
 
+
+
+    
+
+
+
     services.AddSingleton<GenericRepository>();
     services.AddSingleton<CompanyRepository>();
     services.AddSingleton<ServiceRepository>();
@@ -37,10 +52,23 @@ var app = builder.Build();
 
     // Configure the HTTP request pipeline.
 
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", ".NET Sign-up and Verification API"));
+    }
+
+
+    var services = builder.Services;
+    var env = builder.Environment;
+
+
     app.UseDefaultFiles();
     app.UseStaticFiles();
 
     app.UseHttpsRedirection();
+    app.UseAuthentication();
+
 
     app.UseAuthorization();
 
@@ -54,6 +82,7 @@ var app = builder.Build();
         .AllowAnyMethod()
         .AllowAnyHeader()
         .AllowCredentials());
+
 }
 
 app.Run();

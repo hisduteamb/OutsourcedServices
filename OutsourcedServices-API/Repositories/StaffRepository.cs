@@ -71,6 +71,37 @@ namespace Repositories
             };
         }
 
+        public Staff GetStaffMethod(int pageIndex, int pageSize)
+        {
+           
+
+            var result = _genericRepository.ExecuteStoredProcedure("sp_Staff_Get", null);
+
+            if (result.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            var row = result.Rows[0];
+            return new Staff
+            {
+                Id = Convert.ToInt32(row["Id"]),
+                Profile_Id = row["Profile_Id"] as int?,
+                Name = row["Name"] as string,
+                FatherName = row["FatherName"] as string,
+                CNIC = row["CNIC"] as string,
+                Mobile = row["Mobile"] as string,
+                Email = row["Email"] as string,
+                Designation_Id = row["Designation_Id"] as int?,
+                HF_Id = row["HF_Id"] as int?,
+                Reporting_Id = row["Reporting_Id"] as int?,
+                IsActive = row["IsActive"] as bool?,
+                CreatedDate = row["CreatedDate"] as DateTime?,
+                CreatedBy = row["CreatedBy"] as string,
+                User_Id = row["User_Id"] as string
+            };
+        }
+
         public Staff UpdateStaff(Staff staff)
         {
             var parameters = new Dictionary<string, object>
