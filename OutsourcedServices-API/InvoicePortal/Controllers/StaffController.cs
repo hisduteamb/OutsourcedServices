@@ -37,7 +37,7 @@ namespace YourNamespace.Controllers
         [HttpGet]
         public IActionResult GetPages([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
         {
-            var pages = _serviceRepository.GetServiceMethod(pageIndex, pageSize);
+            var pages = _staffRepository.GetStaffMethod(pageIndex, pageSize);
             return Ok(pages);
         }
 

@@ -41,3 +41,8 @@ H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\obj\Debug\
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\obj\Debug\net6.0\InvoicePortal.pdb
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\obj\Debug\net6.0\InvoicePortal.genruntimeconfig.cache
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\obj\Debug\net6.0\ref\InvoicePortal.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\bin\Debug\net6.0\Microsoft.OpenApi.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\InvoicePortal\obj\Debug\net6.0\InvoicePortal.MvcApplicationPartsAssemblyInfo.cs
