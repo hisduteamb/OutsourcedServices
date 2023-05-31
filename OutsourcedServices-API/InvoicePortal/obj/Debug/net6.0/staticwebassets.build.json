@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "QydrD6vzZwfDUQKMdQiV464G2YB2RlgsvHRvAcxN2gQ=",
+  "Source": "InvoicePortal",
+  "BasePath": "_content/InvoicePortal",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

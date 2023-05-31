@@ -1,0 +1,15 @@
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\bin\Debug\net6.0\Repositories.deps.json
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\bin\Debug\net6.0\Repositories.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\bin\Debug\net6.0\Repositories.pdb
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\bin\Debug\net6.0\Model.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\bin\Debug\net6.0\Model.pdb
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.csproj.AssemblyReference.cache
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.AssemblyInfoInputs.cache
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.AssemblyInfo.cs
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.csproj.CoreCompileInputs.cache
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.csproj.CopyComplete
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\refint\Repositories.dll
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\Repositories.pdb
+H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Repositories\obj\Debug\net6.0\ref\Repositories.dll
