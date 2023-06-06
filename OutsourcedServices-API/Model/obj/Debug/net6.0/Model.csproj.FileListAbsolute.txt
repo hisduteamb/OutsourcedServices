@@ -10,3 +10,15 @@ H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\M
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\refint\Model.dll
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.pdb
 H:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\ref\Model.dll
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\bin\Debug\net6.0\Model.deps.json
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\bin\Debug\net6.0\Model.dll
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\bin\Debug\net6.0\Model.pdb
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.csproj.AssemblyReference.cache
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.AssemblyInfoInputs.cache
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.AssemblyInfo.cs
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.csproj.CoreCompileInputs.cache
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.dll
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\refint\Model.dll
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\Model.pdb
+D:\hisduteamB\OutsourcedServices\OutsourcedServices-API\Model\obj\Debug\net6.0\ref\Model.dll

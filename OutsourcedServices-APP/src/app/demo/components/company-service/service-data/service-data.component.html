@@ -1,0 +1,44 @@
+<div class="row col-md-6">
+	<h2>Services</h2>
+</div>
+
+<div class="grid">
+	<div class="col-12 md:col-12">
+		<div class="card p-fluid">
+			<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
+
+				<!-- <div class="card-body animated fadeIn"> -->
+					<div class="grid">
+						<div class="col-12 md:col-4">
+							<label for="email">Company</label>
+                            <p-dropdown id="designation" 
+  								placeholder="Select Company" >
+  								
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+						
+						<div class="col-12 md:col-6">
+							<label for="name" >Service Name</label>
+							<input id="name" type="text" formControlName="name" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+								Service Name is required.
+							</small>
+						</div>
+						
+						
+						<div class=" col-12 md:col-2" style="margin-top: 18px;">
+							<p-button label="Submit" type="submit"  ></p-button>
+						</div>
+
+					</div>
+
+				<!-- </div> -->
+			</form>
+		</div>
+			
+	</div>
+</div>

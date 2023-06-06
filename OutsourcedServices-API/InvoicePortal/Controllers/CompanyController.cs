@@ -16,7 +16,9 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompany([FromBody] Company company)
+        [Route("Create")]
+
+        public IActionResult Create([FromBody] Company company)
         {
             var createdCompany = _companyRepository.CreateCompany(company);
             return Ok(createdCompany);

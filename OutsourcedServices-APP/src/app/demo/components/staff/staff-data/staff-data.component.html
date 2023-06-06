@@ -1,0 +1,108 @@
+
+
+<div class="row col-md-6">
+	<h2>Staff Information Detail Fields</h2>
+</div>
+
+<div class="grid">
+	<div class="col-12 md:col-12">
+		<div class="card p-fluid">
+			<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
+
+				<!-- <div class="card-body animated fadeIn"> -->
+					<h3>Staff Data</h3>
+					<div class="grid">
+						<div class="col-12 md:col-6">
+							<label for="name" >Employee Name</label>
+							<input id="name" type="text" formControlName="name" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+								Employee Name is required.
+							</small>
+						</div>
+                        <div class="col-12 md:col-6">
+							<label for="name" >Father Name</label>
+							<input id="name" type="text" formControlName="name" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+								Father Name is required.
+							</small>
+						</div>
+                        <div class="col-12 md:col-3">
+							<label for="mobileNumber">Mobile Number</label>
+                            <input id="mobileNumber" type="text" formControlName="mobileNumber" class="p-inputtext" mask="0300-0000000" placeholder="0300-0000000" />
+                            <small class="p-invalid" *ngIf="form.get('mobileNumber')?.invalid && form.get('mobileNumber')?.touched">
+                                Mobile Number is required and should be in the format 0300-0000000.
+                            </small>
+						</div>
+                        <div class="col-12 md:col-4">
+							<label for="email">Email</label>
+                            <input id="email" type="text" formControlName="email" class="p-inputtext" mask="A*@A*.A*" placeholder="example@example.com" />
+                            <small class="p-invalid" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                                Email is required and should be in a valid format.
+                            </small>
+						</div>
+                        <div class="col-12 md:col-5">
+							<label for="email">Designation</label>
+                            <p-dropdown id="designation" formControlName="designation" [options]="designations"
+  								placeholder="Select a designation" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-2">
+							<label for="email">Divisions</label>
+                           
+                            <p-dropdown id="divisions" formControlName="divisions" [options]="divisions"
+  								placeholder="Select a designation" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="form.get('divisions')?.invalid && form.get('divisions')?.touched">
+								divisions is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-2">
+							<label for="email">Districts</label>
+                       
+                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
+                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-3">
+							<label for="email">Tehsils</label>
+                            
+                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
+                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-5">
+							<label for="email">Health Facility</label>
+                            
+                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
+                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+
+						<div class=" col-12 md:col-2" style="margin-top: 18px;">
+							<p-button label="Submit" type="submit"  ></p-button>
+						</div>
+					</div>
+				<!-- </div> -->
+			</form>
+		</div>
+			
+	</div>
+</div>

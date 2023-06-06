@@ -16,11 +16,14 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStaff(Staff staff)
+        [Route("Create")]
+        public IActionResult Create(Staff staff)
         {
             var createdStaff = _staffRepository.CreateStaff(staff);
             return Ok(createdStaff);
         }
+
+        
 
         [HttpGet("{id}")]
         public IActionResult GetStaff(int id)
