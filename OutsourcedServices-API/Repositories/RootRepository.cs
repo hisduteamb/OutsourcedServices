@@ -56,42 +56,110 @@ namespace Repositories
             return result;
         }
 
-        public List<Division> GetDivisions()
+        public List<Company> GetCompany()
         {
-            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Division_Get", null);
-            var result = new List<Division>();
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Company_Get", null);
+            var result = new List<Company>();
             foreach (DataRow row in dataTable.Rows)
             {
-                result.Add(new Division
+                result.Add(new Company
                 {
                     Id = Convert.ToInt32(row["Id"]),
-                    Name = row["Name"] as string
+                    Name = row["Name"] as string,
+                    IsActive = row["IsActive"] as bool?,
+                    CreatedDate = row["CreatedDate"] as DateTime?,
+
                 });
             }
 
             return result;
         }
 
-        public HFListP? GetHealthFacility(int id)
+        public List<Division> GetDivisions(string code)
         {
             var parameters = new Dictionary<string, object>
             {
-                {"@Id", id}
+                {"@Code", code}
             };
-
-            var result = _genericRepository.ExecuteStoredProcedure("sp_HealthFacility_Get", parameters);
-
-            if (result.Rows.Count == 0)
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Division_Get", parameters);
+            var result = new List<Division>();
+            foreach (DataRow row in dataTable.Rows)
             {
-                return null;
+                result.Add(new Division
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Name = row["Name"] as string,
+                    Code=row["Code"] as string
+                });
             }
 
-            var row = result.Rows[0];
-            return new HFListP
+            return result;
+        }
+
+        public List<District> GetDistricts(string code)
+        {
+            var parameters = new Dictionary<string, object>
             {
-                Id = Convert.ToInt32(row["Id"]),
-                FullName = row["FullName"] as string
+                 {"@Code", code}
             };
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_District_Get", parameters);
+            var result = new List<District>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                result.Add(new District
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Name = row["Name"] as string,
+                    Code = row["Code"] as string
+                });
+            }
+
+            return result;
+        }
+
+        public List<Tehsil> GetTehsils(string code)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                { "@Code" , code }
+            };
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Tehsil_Get", parameters);
+            var result = new List<Tehsil>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                result.Add(new Tehsil
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Name = row["Name"] as string,
+                    Code = row["Code"] as string
+                });
+            }
+
+            return result;
+        }
+
+        public List<HFListP> GetHealthFacility(string code)
+        {
+            var parameters = new Dictionary<string, object>
+            {
+                {"@Code", code}
+            };
+
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_HealthFacility_Get", parameters);
+            var result = new List<HFListP>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                result.Add(new HFListP
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    FullName = row["FullName"] as string,
+                    HFMISCode = row["HFMISCode"] as string
+                });
+            }
+
+            return result;
+          
+            
         }
 
         public Division? GetDivision(int id)

@@ -38,20 +38,31 @@ namespace YourNamespace.Controllers
         }
 
         [HttpGet]
+        [Route("GetPages")]
         public IActionResult GetPages([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
         {
             var pages = _staffRepository.GetStaffMethod(pageIndex, pageSize);
             return Ok(pages);
         }
 
-        [HttpPut]
+        [HttpGet]
+        [Route("GetStaff")]
+        public IActionResult GetStaff()
+        {
+            var pages = _staffRepository.GetStaffList();
+            return Ok(pages);
+        }
+
+        [HttpPost]
+        [Route("UpdateStaff")]
         public IActionResult UpdateStaff(Staff staff)
         {
             var updatedStaff = _staffRepository.UpdateStaff(staff);
             return Ok(updatedStaff);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteStaff/{id}")]
         public IActionResult DeleteStaff(int id)
         {
             _staffRepository.DeleteStaff(id);

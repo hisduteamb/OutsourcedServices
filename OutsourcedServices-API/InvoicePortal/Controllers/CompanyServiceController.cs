@@ -17,7 +17,8 @@ namespace YourNamespace.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompanyService([FromBody] CompanyService companyService)
+        [Route("Create")]
+        public IActionResult Create([FromBody] CompanyService companyService)
         {
             var createdCompanyService = _companyServiceRepository.CreateCompanyService(companyService);
             return Ok(createdCompanyService);
@@ -39,6 +40,14 @@ namespace YourNamespace.Controllers
         public IActionResult GetPages([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
         {
             var pages = _companyServiceRepository.GetCompaniesService(pageIndex, pageSize);
+            return Ok(pages);
+        }
+
+        [HttpGet]
+        [Route("GetCompanyService")]
+        public IActionResult GetCompanyService()
+        {
+            var pages = _companyServiceRepository.GetCompanyService();
             return Ok(pages);
         }
 

@@ -1,5 +1,6 @@
 ﻿using Model;
 using Repositories;
+using System.Data;
 
 namespace Repositories
 {
@@ -23,6 +24,7 @@ namespace Repositories
                 {"@CNIC", staff.CNIC},
                 {"@Mobile", staff.Mobile},
                 {"@Email", staff.Email},
+                {"@Company_Id",staff.Company_Id },
                 {"@Designation_Id", staff.Designation_Id},
                 {"@HF_Id", staff.HF_Id},
                 {"@Reporting_Id", staff.Reporting_Id},
@@ -61,6 +63,7 @@ namespace Repositories
                 CNIC = row["CNIC"] as string,
                 Mobile = row["Mobile"] as string,
                 Email = row["Email"] as string,
+                Company_Id = row["Company_Id"] as int?,
                 Designation_Id = row["Designation_Id"] as int?,
                 HF_Id = row["HF_Id"] as int?,
                 Reporting_Id = row["Reporting_Id"] as int?,
@@ -71,37 +74,71 @@ namespace Repositories
             };
         }
 
-    
+        
 
-        public Staff GetStaffMethod(int pageIndex, int pageSize)
+        public List<Staff> GetStaffMethod(int pageIndex, int pageSize)
         {
-           
-
-            var result = _genericRepository.ExecuteStoredProcedure("sp_Staff_Get", null);
-
-            if (result.Rows.Count == 0)
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Staff_Get", null);
+            var result = new List<Staff>();
+            foreach (DataRow row in dataTable.Rows)
             {
-                return null;
+                result.Add(new Staff
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Profile_Id = row["Profile_Id"] as int?,
+                    Name = row["Name"] as string,
+                    FatherName = row["FatherName"] as string,
+                    CNIC = row["CNIC"] as string,
+                    Mobile = row["Mobile"] as string,
+                    Email = row["Email"] as string,
+                    Company_Id = row["Company_Id"] as int?,
+                    Designation_Id = row["Designation_Id"] as int?,
+                    HF_Id = row["HF_Id"] as int?,
+                    Reporting_Id = row["Reporting_Id"] as int?,
+                    IsActive = row["IsActive"] as bool?,
+                    CreatedDate = row["CreatedDate"] as DateTime?,
+                    CreatedBy = row["CreatedBy"] as string,
+                    User_Id = row["User_Id"] as string
+
+                });
             }
 
-            var row = result.Rows[0];
-            return new Staff
+            return result;
+
+        }
+
+        public List<Staff> GetStaffList()
+        {
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_Staff_Get", null);
+            var result = new List<Staff>();
+            foreach (DataRow row in dataTable.Rows)
             {
-                Id = Convert.ToInt32(row["Id"]),
-                Profile_Id = row["Profile_Id"] as int?,
-                Name = row["Name"] as string,
-                FatherName = row["FatherName"] as string,
-                CNIC = row["CNIC"] as string,
-                Mobile = row["Mobile"] as string,
-                Email = row["Email"] as string,
-                Designation_Id = row["Designation_Id"] as int?,
-                HF_Id = row["HF_Id"] as int?,
-                Reporting_Id = row["Reporting_Id"] as int?,
-                IsActive = row["IsActive"] as bool?,
-                CreatedDate = row["CreatedDate"] as DateTime?,
-                CreatedBy = row["CreatedBy"] as string,
-                User_Id = row["User_Id"] as string
-            };
+                result.Add(new Staff
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Profile_Id = row["Profile_Id"] as int?,
+                    Name = row["Name"] as string,
+                    FatherName = row["FatherName"] as string,
+                    CNIC = row["CNIC"] as string,
+                    Mobile = row["Mobile"] as string,
+                    Email = row["Email"] as string,
+                    Company_Id = row["Company_Id"] as int?,
+                    Designation_Id = row["Designation_Id"] as int?,
+                    HF_Id = row["HF_Id"] as int?,
+                    Reporting_Id = row["Reporting_Id"] as int?,
+                    IsActive = row["IsActive"] as bool?,
+                    CreatedDate = row["CreatedDate"] as DateTime?,
+                    CreatedBy = row["CreatedBy"] as string,
+                    User_Id = row["User_Id"] as string,
+                    DesignationName = row["DesignationName"] as string,
+                    healthFacilityName = row["healthFacilityName"] as string,
+                    CompanyName = row["CompanyName"] as string
+
+                });
+            }
+
+            return result;
+
         }
 
         public Staff UpdateStaff(Staff staff)
@@ -116,6 +153,7 @@ namespace Repositories
                     {"@CNIC", staff.CNIC},
                     {"@Mobile", staff.Mobile},
                     {"@Email", staff.Email},
+                    {"@Company_Id",staff.Company_Id },
                     {"@Designation_Id", staff.Designation_Id},
                     {"@HF_Id", staff.HF_Id},
                     {"@Reporting_Id", staff.Reporting_Id},

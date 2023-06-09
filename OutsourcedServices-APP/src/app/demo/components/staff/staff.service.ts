@@ -15,17 +15,57 @@ export class StaffService {
   public createStaff(obj: any) {
     return this.http.post(`${Config.getControllerUrl("Staff", "Create")}`, obj);
   }
+  public getStaffList()
+  {
+    
+    return this.http.get(`${Config.getControllerUrl("Staff", "GetStaff")}`
+    );
+  }
+  public editStaff(obj: any) {
+    return this.http.post(`${Config.getControllerUrl("Staff", "UpdateStaff")}`, obj);
+  }
 
-  public getDesignations()
+  public removeStaff(id: number) {
+    
+    return this.http.delete(`${Config.getControllerUrl("Staff", "DeleteStaff")}/${id}`);
+  }
+  public GetCompanyList()
   {
     debugger
+    return this.http.get(`${Config.getControllerUrl("Root", "GetCompanies")}`
+    );
+  }
+  public getDesignations()
+  {
+    
     return this.http.get(`${Config.getControllerUrl("Root", "GetDesignation")}`
     );
   }
-  public getDivisions()
+
+
+  public getDivisions(Code: string)
   {
-    debugger
-    return this.http.get(`${Config.getControllerUrl("Root", "GetDivision")}`
+    
+    return this.http.get(`${Config.getControllerUrl("Root", "GetDivision")}/${Code}`
+    );
+  }
+  public GetDistricts(Code: string)
+  {
+    
+    return this.http.get(`${Config.getControllerUrl("Root", "GetDistrict")}/${Code}`
+    );
+  }
+  public GetTehsils(Code: string)
+  {
+    
+    return this.http.get(`${Config.getControllerUrl("Root", "GetTehsil")}/${Code}`
+    );
+  }
+
+  public GetHealthFacilitys(Code: string)
+  {
+    
+    return this.http.get(`${Config.getControllerUrl("Root", "healthfacility")}/${Code}`
     );
   }
 

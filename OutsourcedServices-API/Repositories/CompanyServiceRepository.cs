@@ -9,19 +9,24 @@ namespace YourNamespace.Services
     public class CompanyServiceRepository
     {
         private readonly GenericRepository _genericRepository;
+        private readonly ServiceRepository _serviceRepository;
 
-        public CompanyServiceRepository(GenericRepository genericRepository)
+        public CompanyServiceRepository(GenericRepository genericRepository, ServiceRepository serviceRepository)
         {
             _genericRepository = genericRepository;
+            _serviceRepository = serviceRepository;
         }
 
         public CompanyService CreateCompanyService(CompanyService companyService)
         {
+            Service service = new Service() { Name = companyService.ServiceName };
+            service = _serviceRepository.CreateService(service);
+
             var parameters = new Dictionary<string, object>
             {
                 {"@Operation", "Create"},
-                {"@Service_Id", companyService.Service_Id},
-                {"@Company_Id", companyService.Company_Id},
+                {"@Service_Id", service.Id},
+                {"@Company_Id", companyService.Company_Id}, 
             };
 
             var result = _genericRepository.ExecuteStoredProcedure("sp_CompanyService_CRUD", parameters);
@@ -55,7 +60,7 @@ namespace YourNamespace.Services
 
         public CompanyService GetCompaniesService(int pageIndex, int pageSize)
         {
-            
+
 
             var result = _genericRepository.ExecuteStoredProcedure("sp_CompanyService_Get", null);
 
@@ -71,6 +76,28 @@ namespace YourNamespace.Services
                 Service_Id = row["Service_Id"] as int?,
                 Company_Id = row["Company_Id"] as int?,
             };
+        }
+        public List<CompanyService> GetCompanyService()
+        {
+            var dataTable = _genericRepository.ExecuteStoredProcedure("sp_CompanyService_Get", null);
+            var result = new List<CompanyService>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                result.Add(new CompanyService
+                {
+                    Id = Convert.ToInt32(row["Id"]),
+                    Service_Id = row["Service_Id"] as int?,
+                    Company_Id = row["Company_Id"] as int?,
+                    ServiceName = row["ServiceName"] as string,
+                    companyName = row["companyName"] as string,
+                    serviceStatus = row["serviceStatus"] as bool?,
+                    companyStatus = row["companyStatus"] as bool?
+
+                });
+            }
+
+            return result;
+
         }
         public CompanyService UpdateCompanyService(CompanyService companyService)
         {

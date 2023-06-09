@@ -15,5 +15,19 @@ export class CompanyService {
   public createCompanies(obj: any) {
     return this.http.post(`${Config.getControllerUrl("Company", "Create")}`, obj);
   }
+  public editCompany(obj: any) {
+    return this.http.post(`${Config.getControllerUrl("Company", "UpdateCompany")}`, obj);
+  }
+
+  public removeCompany(id: number) {
+    
+    return this.http.delete(`${Config.getControllerUrl("Company", "DeleteCompany")}/${id}`);
+  }
+  public GetCompanyList()
+  {
+    
+    return this.http.get(`${Config.getControllerUrl("Root", "GetCompanies")}`
+    );
+  }
 
 }

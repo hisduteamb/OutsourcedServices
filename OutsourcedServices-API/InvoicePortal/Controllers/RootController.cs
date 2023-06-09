@@ -40,20 +40,47 @@ namespace InvoicePortal.Controllers
                 return Ok(createdStaff);
             }
 
+
             [HttpGet]
-            [Route("GetDivision")]
-            public IActionResult GetDivision()
+            [Route("GetCompanies")]
+            public IActionResult GetCompanies()
             {
 
-                var createdStaff = _rootRepository.GetDivisions();
+                var createdStaff = _rootRepository.GetCompany();
                 return Ok(createdStaff);
             }
 
-
-        [HttpGet("healthfacility/{id}")]
-            public IActionResult GetHealthFacility(int id)
+        [HttpGet]
+            [Route("GetDivision/{code}")]
+            public IActionResult GetDivision(string code)
             {
-                var result = _rootRepository.GetHealthFacility(id);
+
+                var createdStaff = _rootRepository.GetDivisions(code);
+                return Ok(createdStaff);
+            }
+
+            [HttpGet]
+            [Route("GetDistrict/{code}")]
+            public IActionResult GetDistrict(string code)
+            {
+
+                var createdStaff = _rootRepository.GetDistricts(code);
+                return Ok(createdStaff);
+            }
+
+            [HttpGet]
+            [Route("GetTehsil/{code}")]
+            public IActionResult GetTehsil(string code)
+            {
+
+                var createdStaff = _rootRepository.GetTehsils(code);
+                return Ok(createdStaff);
+            }
+
+            [HttpGet("healthfacility/{code}")]
+            public IActionResult GetHealthFacility(string code)
+            {
+                var result = _rootRepository.GetHealthFacility(code);
                 if (result != null)
                     return Ok(result);
 
