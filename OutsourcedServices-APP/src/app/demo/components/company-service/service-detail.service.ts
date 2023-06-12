@@ -29,4 +29,12 @@ export class ServiceDetailService {
     return this.http.get(`${Config.getControllerUrl("CompanyService", "GetCompanyService")}`
     );
   }
+  public editCompanyService(obj: any) {
+    return this.http.post(`${Config.getControllerUrl("CompanyService", "UpdateCompanyService")}`, obj);
+  }
+
+  public removeCompanyService(id: number) {
+    
+    return this.http.delete(`${Config.getControllerUrl("CompanyService", "DeleteCompanyService")}/${id}`);
+  }
 }

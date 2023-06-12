@@ -25,7 +25,9 @@ namespace Repositories
             };
 
             var result = _genericRepository.ExecuteStoredProcedure("sp_Company_CRUD", parameters);
+
             company.Id = Convert.ToInt32(result.Rows[0]["Id"]);
+
 
             return company;
         }

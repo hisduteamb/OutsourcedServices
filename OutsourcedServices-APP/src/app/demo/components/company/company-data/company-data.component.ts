@@ -44,6 +44,7 @@ export class CompanyDataComponent implements OnInit {
       this._companyService.createCompanies(formData).subscribe({
         next: (res) => {
           this.companyData = res;
+          this.GetCompanyList();
         },
         error: (err) => {
           console.log(err);
@@ -94,6 +95,7 @@ export class CompanyDataComponent implements OnInit {
       this._companyService.editCompany(formData).subscribe({
         next: (res) => {
           this.editCompany = res;
+          this.GetCompanyList();
         },
         error: (err) => {
           console.log(err);
@@ -109,6 +111,7 @@ export class CompanyDataComponent implements OnInit {
       this._companyService.removeCompany(id).subscribe({
         next: (res) => {
           this.removeCompany = res;
+          this.GetCompanyList();
         },
         error: (err) => {
           console.log(err);

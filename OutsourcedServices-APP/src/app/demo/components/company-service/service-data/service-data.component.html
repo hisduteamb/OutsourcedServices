@@ -105,5 +105,43 @@
 		</div>
 	</div>
 
+	<div class="card flex justify-content-center">
+		<p-dialog header="Edit" [(visible)]="visible" [style]="{width: '60vw','min-height': '400px' }">
+			<form *ngIf="editCompanyServiceform" [formGroup]="editCompanyServiceform" (ngSubmit)="edit()" class="p-fluid">
+
+
+
+				<!-- <div class="card-body animated fadeIn"> -->
+				<div class="grid">
+					<div class="col-12 md:col-4">
+						<label for="email">Company</label>
+						<p-dropdown id="Company_Id" formControlName="Company_Id" [options]="companyList"
+							  placeholder="Select Company" optionLabel="name" optionValue="id"  [filter]="true" filterBy="name" >
+							  <ng-template let-option pTemplate="item">
+								{{ option.name }}
+							  </ng-template>
+						</p-dropdown>
+						
+						<small class="p-invalid" *ngIf="editCompanyServiceform.get('Company_Id')?.invalid && editCompanyServiceform.get('Company_Id')?.touched">
+							Company is required.
+						</small>
+					</div>
+					<div class="col-12 md:col-6">
+						<label for="name" >Service Name</label>
+						<input id="serviceName" type="text" formControlName="serviceName" class="p-inputtext" />
+						<small class="p-invalid" *ngIf="editCompanyServiceform.get('serviceName')?.invalid && editCompanyServiceform.get('serviceName')?.touched">
+							Service Name is required.
+						</small>
+					</div>
+					<div class=" col-12 md:col-2" style="margin-top: 18px;">
+						<p-button label="Edit" type="submit"></p-button>
+					</div>
+				</div>
+				<!-- </div> -->
+			</form>
+
+		</p-dialog>
+	</div>
+
 
 </div>

@@ -101,12 +101,19 @@ namespace YourNamespace.Services
         }
         public CompanyService UpdateCompanyService(CompanyService companyService)
         {
+            
+                Service service = new Service() { Name = companyService.ServiceName };
+                service = _serviceRepository.UpdateService(service);
+            
+            
             var parameters = new Dictionary<string, object>
             {
                 {"@Operation", "Update"},
                 {"@Id", companyService.Id},
                 {"@Service_Id", companyService.Service_Id},
                 {"@Company_Id", companyService.Company_Id},
+
+                
             };
 
             _genericRepository.ExecuteStoredProcedure("sp_CompanyService_CRUD", parameters);

@@ -51,14 +51,16 @@ namespace YourNamespace.Controllers
             return Ok(pages);
         }
 
-        [HttpPut]
+        [HttpPost]
+        [Route("UpdateCompanyService")]
         public IActionResult UpdateCompanyService([FromBody] CompanyService companyService)
         {
             var updatedCompanyService = _companyServiceRepository.UpdateCompanyService(companyService);
             return Ok(updatedCompanyService);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteCompanyService/id")]
         public IActionResult DeleteCompanyService(int id)
         {
             _companyServiceRepository.DeleteCompanyService(id);

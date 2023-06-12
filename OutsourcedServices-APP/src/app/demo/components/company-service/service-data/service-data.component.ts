@@ -16,6 +16,8 @@ export class ServiceDataComponent {
 
   public companyList: any;
   public companyServiceList: any;
+  public companyServiceEdit: any;
+  public companyServiceRemove: any;
   public companyService: any;
   @ViewChild('filter') filter!: ElementRef;
   loading: boolean = false;
@@ -49,7 +51,7 @@ export class ServiceDataComponent {
       this._serviceDetailService.createCompanyService(formData).subscribe({
         next: (res) => {
           this.companyService = res;
-          
+          this.getCompanyServiceList();
 
         },
         error: (err) => {
@@ -100,44 +102,48 @@ export class ServiceDataComponent {
     table.clear();
     this.filter.nativeElement.value = '';
   }
-  EditDialog(company: any) {
+  EditDialog(companyService: any) {
     debugger
     this.visible = true;
-    this.editCompanyServiceform = new FormGroup({
-      id: new FormControl(company.id),
-      name: new FormControl(company.name, Validators.required),
-      isActive: new FormControl(company.isActive)
+    this.editCompanyServiceform = this.formBuilder.group({
+      id:[companyService.id],
+      Company_Id: [companyService.company_Id, [Validators.required]],
+      companyName: [companyService.companyName, [Validators.required]],
+      serviceName: [companyService.serviceName, [Validators.required]],
+      companyStatus: [companyService.companyStatus],
+      serviceStatus: [companyService.serviceStatus],
+      service_Id: [companyService.service_Id]
     });
 
   }
 
   public edit() {
     debugger
-    // if (this.comapnyEditForm.valid) {
-    //   const formData = this.comapnyEditForm.value;
-    //   this._companyService.editCompany(formData).subscribe({
-    //     next: (res) => {
-    //       this.editCompany = res;
-    //     },
-    //     error: (err) => {
-    //       console.log(err);
-    //     }
-    //   });
-    // }
+    if (this.editCompanyServiceform.valid) {
+      const formData = this.editCompanyServiceform.value;
+      this._serviceDetailService.editCompanyService(formData).subscribe({
+        next: (res) => {
+          this.companyServiceEdit = res;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
 
   }
 
   public remove(id:number) {
     debugger
     
-      // this._companyService.removeCompany(id).subscribe({
-      //   next: (res) => {
-      //     this.removeCompany = res;
-      //   },
-      //   error: (err) => {
-      //     console.log(err);
-      //   }
-      // });
+      this._serviceDetailService.removeCompanyService(id).subscribe({
+        next: (res) => {
+          this.companyServiceRemove = res;
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
     
 
   }

@@ -88,6 +88,7 @@ export class StaffDataComponent {
       this._staffService.createStaff(formData).subscribe({
         next: (res) => {
           this.staffData = res;
+          this.getStaffList();
         },
         error: (err) => {
           console.log(err);
@@ -307,6 +308,7 @@ export class StaffDataComponent {
       this._staffService.editStaff(formData).subscribe({
         next: (res) => {
           this.editStaff = res;
+          this.getStaffList();
         },
         error: (err) => {
           console.log(err);
@@ -322,6 +324,7 @@ export class StaffDataComponent {
       this._staffService.removeStaff(id).subscribe({
         next: (res) => {
           this.RemoveStaff = res;
+          this.getStaffList();
         },
         error: (err) => {
           console.log(err);
