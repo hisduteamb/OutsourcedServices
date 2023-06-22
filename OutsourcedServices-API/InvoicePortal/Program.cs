@@ -45,6 +45,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddSingleton<CompanyServiceRepository>();
     services.AddSingleton<StaffRepository>();
     services.AddSingleton<RootRepository>();
+    services.AddSingleton<InvoiceRepository>();
 
 }
 

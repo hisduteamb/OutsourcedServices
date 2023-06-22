@@ -1,0 +1,136 @@
+<!-- <p>invoice-data works!</p> -->
+<div class="row col-md-6">
+    <h2>Invoice</h2>
+</div>
+
+<div class="grid">
+    <div class="col-12 md:col-12">
+        <div class="card p-fluid">
+            <form *ngIf="invoiceform" [formGroup]="invoiceform" (ngSubmit)="onSubmit()" class="p-fluid">
+                <div class="grid">
+                    <div class="col-12 md:col-3">
+                        <label for="mobileNumber">Company:</label>
+                        <p-dropdown id="company" formControlName="companyId" [options]="companyList"
+                            placeholder="Select Company" optionLabel="name" optionValue="id" [filter]="true"
+                            filterBy="name">
+                            <ng-template let-option pTemplate="item">
+                                {{ option.name }}
+                            </ng-template>
+                        </p-dropdown>
+
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('companyId')?.invalid && invoiceform.get('companyId')?.touched">
+                            Company is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <label for="name">Service:</label>
+                        <p-dropdown id="service" formControlName="outsourceServiceId" [options]="companyList"
+                            placeholder="Select Company" optionLabel="name" optionValue="id" [filter]="true"
+                            filterBy="name">
+                            <ng-template let-option pTemplate="item">
+                                {{ option.name }}
+                            </ng-template>
+                        </p-dropdown>
+
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('outsourceServiceId')?.invalid && invoiceform.get('outsourceServiceId')?.touched">
+                            outsourceService is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <label for="name">Staff Member:</label>
+                        <p-dropdown id="staff" formControlName="currentOfficerId" [options]="companyList"
+                            placeholder="Select Company" optionLabel="name" optionValue="id" [filter]="true"
+                            filterBy="name">
+                            <ng-template let-option pTemplate="item">
+                                {{ option.name }}
+                            </ng-template>
+                        </p-dropdown>
+
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('currentOfficerId')?.invalid && invoiceform.get('currentOfficerId')?.touched">
+                            CurrentOfficer is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <label for="mobileNumber">Invoice Number:</label>
+                        <input id="invoiceNumber" type="number" formControlName="trackingNumber" class="p-inputtext" />
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('trackingNumber')?.invalid && invoiceform.get('trackingNumber')?.touched">
+                            Invoice Number is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <label for="invoicedate">Invoice Date:</label>
+                        <p-calendar formControlName="receiveDatetime" [showIcon]="true"></p-calendar>
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('receiveDatetime')?.invalid && invoiceform.get('receiveDatetime')?.touched">
+                            Invoice Date is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-3">
+                        <label for="invoiceamount">Invoice Amount:</label>
+                        <input id="invoiceAmount" type="number" formControlName="amount" class="p-inputtext" />
+
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('amount')?.invalid && invoiceform.get('amount')?.touched">
+                            Invoice Amount is required.
+                        </small>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <label for="email">Invoice Remarks:</label>
+                        <input id="comments" type="text" formControlName="comments" class="p-inputtext" />
+
+                        <small class="p-invalid"
+                            *ngIf="invoiceform.get('comments')?.invalid && invoiceform.get('comments')?.touched">
+                            Designation is required.
+                        </small>
+                    </div>
+                </div>
+
+                <hr>
+                <h4>Invoice Detail</h4>
+                <br />
+
+                    <div class="grid" formArrayName="invoiceDetail">
+                        <div class="col-12  md:col-12" *ngFor="let item of invoiceDetail.controls; let i = index;">
+                            <div class="grid" [formGroupName]="i">
+                                <div class="col-3  md:col-3">
+                                    <label for="item">Item Name:</label>
+                                    <input type="text" formControlName="itemId" placeholder="Enter item"
+                                        class="p-inputtext" />
+                                </div>
+                                <div class="col-3  md:col-3">
+                                    <label for="Quantity">Quantity:</label>
+                                    <input type="text" formControlName="quantity" placeholder="Enter Quantity"
+                                        class="p-inputtext" />
+                                </div>
+                                <div class="col-3  md:col-3">
+                                    <label for="TotalMarks">AttendanceInDays:</label>
+                                    <input type="text" formControlName="attendanceInDays"
+                                        placeholder="Enter AttendanceInDays" class="p-inputtext" />
+                                </div>
+                                <div class="col-3  md:col-3" style="margin-top: 18px;">
+                                    <button *ngIf="i == 0" type="button" (click)="addInvoiceDetails()" pButton
+                                        icon="pi pi-plus"></button>
+                                    <button *ngIf="i > 0" type="button" (click)="deleteInvoiceDetails(i)" pButton
+                                        icon="pi pi-times"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                <div class="col-12 md:col-2" style="margin-top: 18px;">
+                    <p-button label="Generate Invoice" type="submit"></p-button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
