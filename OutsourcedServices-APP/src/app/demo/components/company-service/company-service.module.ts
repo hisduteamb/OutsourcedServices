@@ -10,7 +10,15 @@ import {  ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ChipsModule } from "primeng/chips";
 import {DropdownModule} from 'primeng/dropdown';
-
+import { TableModule } from 'primeng/table';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { RippleModule } from 'primeng/ripple';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { ToastModule } from 'primeng/toast';
+import { SliderModule } from 'primeng/slider';
+import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
 @NgModule({
   declarations: [
     ServiceDataComponent
@@ -22,7 +30,17 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     FormsModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    TableModule,
+    ToggleButtonModule,
+    RippleModule,
+    MultiSelectModule,
+    ProgressBarModule,
+    ToastModule,
+    SliderModule,
+    RatingModule,
+    DialogModule
+
   ]
   
 })

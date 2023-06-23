@@ -1,55 +1,74 @@
 
 
 <div class="row col-md-6">
-	<h2>Staff Information Detail Fields</h2>
+	<h2>Staff</h2>
 </div>
 
 <div class="grid">
 	<div class="col-12 md:col-12">
 		<div class="card p-fluid">
-			<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="p-fluid">
+			<form *ngIf="staffform" [formGroup]="staffform" (ngSubmit)="onSubmit()" class="p-fluid">
 
 				<!-- <div class="card-body animated fadeIn"> -->
-					<h3>Staff Data</h3>
 					<div class="grid">
-						<div class="col-12 md:col-6">
+						<div class="col-12 md:col-2">
+							<label for="mobileNumber">CNIC</label>
+							<p-inputMask mask="99999-9999999-9" formControlName="cnic" placeholder="99999-9999999-9"></p-inputMask>
+                            <small class="p-invalid" *ngIf="staffform.get('cnic')?.invalid && staffform.get('cnic')?.touched">
+                                CNIC is required and should be in the format 99999-9999999-9.
+                            </small>
+						</div>
+						<div class="col-12 md:col-5">
 							<label for="name" >Employee Name</label>
 							<input id="name" type="text" formControlName="name" class="p-inputtext" />
-							<small class="p-invalid" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+							<small class="p-invalid" *ngIf="staffform.get('name')?.invalid && staffform.get('name')?.touched">
 								Employee Name is required.
 							</small>
 						</div>
-                        <div class="col-12 md:col-6">
+                        <div class="col-12 md:col-5">
 							<label for="name" >Father Name</label>
-							<input id="name" type="text" formControlName="name" class="p-inputtext" />
-							<small class="p-invalid" *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+							<input id="name" type="text" formControlName="fatherName" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="staffform.get('fatherName')?.invalid && staffform.get('fatherName')?.touched">
 								Father Name is required.
 							</small>
 						</div>
-                        <div class="col-12 md:col-3">
+                        <div class="col-12 md:col-2">
 							<label for="mobileNumber">Mobile Number</label>
-                            <input id="mobileNumber" type="text" formControlName="mobileNumber" class="p-inputtext" mask="0300-0000000" placeholder="0300-0000000" />
-                            <small class="p-invalid" *ngIf="form.get('mobileNumber')?.invalid && form.get('mobileNumber')?.touched">
-                                Mobile Number is required and should be in the format 0300-0000000.
+							<p-inputMask mask="9999-9999999" formControlName="mobile" placeholder="9999-9999999"></p-inputMask>
+                            <small class="p-invalid" *ngIf="staffform.get('mobile')?.invalid && staffform.get('mobile')?.touched">
+                                Mobile Number is required and should be in the format 9999-9999999.
                             </small>
 						</div>
-                        <div class="col-12 md:col-4">
+                        <div class="col-12 md:col-3">
 							<label for="email">Email</label>
-                            <input id="email" type="text" formControlName="email" class="p-inputtext" mask="A*@A*.A*" placeholder="example@example.com" />
-                            <small class="p-invalid" *ngIf="form.get('email')?.invalid && form.get('email')?.touched">
+                            <input id="email" formControlName="email" class="p-inputtext" mask="A*@A*.A*" placeholder="example@example.com" />
+                            <small class="p-invalid" *ngIf="staffform.get('email')?.invalid && staffform.get('email')?.touched">
                                 Email is required and should be in a valid format.
                             </small>
 						</div>
-                        <div class="col-12 md:col-5">
+						<div class="col-12 md:col-3">
+							<label for="email">Company</label>
+                            <p-dropdown id="comapny" formControlName="Company_Id" [options]="companyList"
+  								placeholder="Select Company" optionLabel="name" optionValue="id"  [filter]="true" filterBy="name" >
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffform.get('Company_Id')?.invalid && staffform.get('Company_Id')?.touched">
+								Company is required.
+                            </small>
+						</div>
+                        <div class="col-12 md:col-4">
 							<label for="email">Designation</label>
-                            <p-dropdown id="designation" formControlName="designation" [options]="designations"
+                            <p-dropdown id="designation" formControlName="designation_Id" [options]="designations" optionLabel="name" optionValue="id"
   								placeholder="Select a designation" [filter]="true" filterBy="name">
   								<ng-template let-option pTemplate="item">
     								{{ option.name }}
   								</ng-template>
 							</p-dropdown>
                             
-							<small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
+							<small class="p-invalid" *ngIf="staffform.get('designation_Id')?.invalid && staffform.get('designation_Id')?.touched">
                               Designation is required.
                             </small>
 						</div>
@@ -57,42 +76,64 @@
                         <div class="col-12 md:col-2">
 							<label for="email">Divisions</label>
                            
-                            <p-dropdown id="divisions" formControlName="divisions" [options]="divisions"
-  								placeholder="Select a designation" [filter]="true" filterBy="name">
+                            <p-dropdown id="divisions"  [options]="divisions" formControlName="division" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadDistrict($event)"
+  								placeholder="Select division" [filter]="true" filterBy="name">
   								<ng-template let-option pTemplate="item">
     								{{ option.name }}
   								</ng-template>
 							</p-dropdown>
                             
-							<small class="p-invalid" *ngIf="form.get('divisions')?.invalid && form.get('divisions')?.touched">
+							<small class="p-invalid" *ngIf="staffform.get('division')?.invalid && staffform.get('division')?.touched">
 								divisions is required.
                             </small>
 						</div>
-
+					
                         <div class="col-12 md:col-2">
 							<label for="email">Districts</label>
                        
-                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
-                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
-                              Designation is required.
+                            <p-dropdown id="districts"  [options]="districts" formControlName="district" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadtehsil($event)"
+  								placeholder="Select district" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffform.get('district')?.invalid && staffform.get('district')?.touched">
+								district is required.
                             </small>
 						</div>
 
                         <div class="col-12 md:col-3">
 							<label for="email">Tehsils</label>
                             
-                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
-                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
-                              Designation is required.
+                            <p-dropdown id="tehsils"  [options]="tehsils" formControlName="tehsil" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadHealthFacility($event)"
+  								placeholder="Select tehsil" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffform.get('tehsil')?.invalid && staffform.get('tehsil')?.touched">
+								tehsil is required.
                             </small>
 						</div>
 
                         <div class="col-12 md:col-5">
 							<label for="email">Health Facility</label>
                             
-                            <p-dropdown id="designation" formControlName="designation" [options]="designations" placeholder="Select a designation"></p-dropdown>
-                            <small class="p-invalid" *ngIf="form.get('designation')?.invalid && form.get('designation')?.touched">
-                              Designation is required.
+                            <p-dropdown id="healthFacility" formControlName="HF_Id" class="form-control" [options]="healthFacility"  optionLabel="fullName" optionValue="id" 
+								
+								placeholder="Select healthFacility" [filter]="true" filterBy="fullName">
+  								<ng-template let-option pTemplate="item" class="form-control">
+    								{{ option.fullName }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffform.get('HF_Id')?.invalid && staffform.get('HF_Id')?.touched">
+								healthFacility is required.
                             </small>
 						</div>
 
@@ -105,4 +146,257 @@
 		</div>
 			
 	</div>
+	<div class="col-12">
+		<div class="card">
+			<h5>Filter Menu</h5>
+			<p-table #dt1 [value]="stafflist" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true"  responsiveLayout="scroll">
+				<ng-template pTemplate="caption">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+						<!-- <button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button> -->
+						<span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Search Keyword" class="w-full"/>
+						</span>
+					</div>
+				</ng-template>
+				<ng-template  pTemplate="header">
+					<tr>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Name
+								<p-columnFilter type="text" field="name" display="menu" placeholder="Search by name"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								FatherName
+								<p-columnFilter type="text" field="fatherName" display="menu" placeholder="Search by name"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								CNIC
+								<p-columnFilter type="text" field="cnic" display="menu" placeholder="Search by CNIC"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Mobile Number
+								<p-columnFilter type="text" field="mobile" display="menu" placeholder="Search by mobileNumber"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Designation
+								<p-columnFilter type="text" field="designationName" display="menu" placeholder="Search by name"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								healthFacility
+								<p-columnFilter type="text" field="healthFacilityName" display="menu" placeholder="Search by name"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Company
+								<p-columnFilter type="text" field="companyName" display="menu" placeholder="Search by name"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 10rem">
+							<div class="flex justify-content-between align-items-center">
+								Date
+								<p-columnFilter type="date" field="date" display="menu" placeholder="mm/dd/yyyy"></p-columnFilter>
+							</div>
+						</th>
+						<th style="min-width: 12rem">
+							<div class="flex justify-content-between align-items-center">
+								Action
+								
+							</div>
+						</th>
+					</tr>
+					
+				</ng-template>
+				<ng-template pTemplate="body" let-staff>
+					<tr>
+						<td>
+							{{staff.name}}
+						</td>
+						<td>
+							{{staff.fatherName}}
+						</td>
+						<td>
+							{{staff.cnic}}
+						</td>
+						<td>
+							{{staff.mobile}}
+						</td>
+						<td>
+							{{staff.designationName}}
+						</td>
+						<td>
+							{{staff.healthFacilityName}}
+						</td>
+						<td>
+							{{staff.companyName}}
+						</td>
+						<td>
+							{{staff.createdDate | date: 'MM/dd/yyyy'}}
+						</td>
+						<td>
+							<button pButton label="Edit" (click)="EditDialog(staff)" class="p-button-outlined mb-2"
+								icon="pi pi-filter-slash"></button>
+							&nbsp;
+							<button pButton label="Remove" (click)="remove(staff.id)" class="p-button-outlined mb-2"
+								icon="pi pi-filter-slash"></button>
+						</td>
+					</tr>
+				</ng-template>
+			</p-table>
+		</div>
+	</div>
+
+	<div class="card flex justify-content-center">
+		<p-dialog header="Edit" [(visible)]="visible" [style]="{width: '60vw' }">
+			<form *ngIf="staffEditform" [formGroup]="staffEditform" (ngSubmit)="edit()" class="p-fluid">
+
+				<!-- <div class="card-body animated fadeIn"> -->
+					<div class="grid">
+						<div class="col-12 md:col-2">
+							<label for="mobileNumber">CNIC</label>
+							<p-inputMask mask="99999-9999999-9" formControlName="cnic" placeholder="99999-9999999-9"></p-inputMask>
+                            <small class="p-invalid" *ngIf="staffform.get('cnic')?.invalid && staffform.get('cnic')?.touched">
+                                CNIC is required and should be in the format 99999-9999999-9.
+                            </small>
+						</div>
+						<div class="col-12 md:col-5">
+							<label for="name" >Employee Name</label>
+							<input id="name" type="text" formControlName="name" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="staffEditform.get('name')?.invalid && staffEditform.get('name')?.touched">
+								Employee Name is required.
+							</small>
+						</div>
+                        <div class="col-12 md:col-5">
+							<label for="name" >Father Name</label>
+							<input id="name" type="text" formControlName="fatherName" class="p-inputtext" />
+							<small class="p-invalid" *ngIf="staffEditform.get('fatherName')?.invalid && staffEditform.get('fatherName')?.touched">
+								Father Name is required.
+							</small>
+						</div>
+                        <div class="col-12 md:col-2">
+							<label for="mobileNumber">Mobile Number</label>
+							<p-inputMask mask="9999-9999999" formControlName="mobile" placeholder="9999-9999999"></p-inputMask>
+                            <small class="p-invalid" *ngIf="staffEditform.get('mobile')?.invalid && staffEditform.get('mobile')?.touched">
+                                Mobile Number is required and should be in the format 9999-9999999.
+                            </small>
+						</div>
+                        <div class="col-12 md:col-3">
+							<label for="email">Email</label>
+                            <input id="email" formControlName="email" class="p-inputtext" mask="A*@A*.A*" placeholder="example@example.com" />
+                            <small class="p-invalid" *ngIf="staffEditform.get('email')?.invalid && staffEditform.get('email')?.touched">
+                                Email is required and should be in a valid format.
+                            </small>
+						</div>
+						<div class="col-12 md:col-3">
+							<label for="email">Company</label>
+                            <p-dropdown id="comapny" formControlName="Company_Id" [options]="companyList"
+  								placeholder="Select Company" optionLabel="name" optionValue="id"  [filter]="true" filterBy="name" >
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('Company_Id')?.invalid && staffEditform.get('Company_Id')?.touched">
+								Company is required.
+                            </small>
+						</div>
+                        <div class="col-12 md:col-4">
+							<label for="email">Designation</label>
+                            <p-dropdown id="designation" formControlName="designation_Id" [options]="designations" optionLabel="name" optionValue="id"
+  								placeholder="Select a designation" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('designation_Id')?.invalid && staffEditform.get('designation_Id')?.touched">
+                              Designation is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-2">
+							<label for="email">Divisions</label>
+                           
+                            <p-dropdown id="divisions"  [options]="divisions" formControlName="division" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadDistrict($event)"
+  								placeholder="Select division" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('division')?.invalid && staffEditform.get('division')?.touched">
+								divisions is required.
+                            </small>
+						</div>
+					
+                        <div class="col-12 md:col-2">
+							<label for="email">Districts</label>
+                       
+                            <p-dropdown id="districts"  [options]="districts" formControlName="district" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadtehsil($event)"
+  								placeholder="Select district" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('district')?.invalid && staffEditform.get('district')?.touched">
+								district is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-3">
+							<label for="email">Tehsils</label>
+                            
+                            <p-dropdown id="tehsils"  [options]="tehsils" formControlName="tehsil" optionLabel="name" optionValue="code" 
+								(onChange)="onDropdownLoadHealthFacility($event)"
+  								placeholder="Select tehsil" [filter]="true" filterBy="name">
+  								<ng-template let-option pTemplate="item">
+    								{{ option.name }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('tehsil')?.invalid && staffEditform.get('tehsil')?.touched">
+								tehsil is required.
+                            </small>
+						</div>
+
+                        <div class="col-12 md:col-5">
+							<label for="email">Health Facility</label>
+                            
+                            <p-dropdown id="healthFacility" formControlName="HF_Id" class="form-control" [options]="healthFacility"  optionLabel="fullName" optionValue="id" 
+								
+								placeholder="Select healthFacility" [filter]="true" filterBy="fullName">
+  								<ng-template let-option pTemplate="item" class="form-control">
+    								{{ option.fullName }}
+  								</ng-template>
+							</p-dropdown>
+                            
+							<small class="p-invalid" *ngIf="staffEditform.get('HF_Id')?.invalid && staffEditform.get('HF_Id')?.touched">
+								healthFacility is required.
+                            </small>
+						</div>
+
+						<div class=" col-12 md:col-2" style="margin-top: 18px;">
+							<p-button label="Edit" type="submit"  ></p-button>
+						</div>
+					</div>
+				<!-- </div> -->
+			</form>
+
+		</p-dialog>
+	</div>
+
 </div>

@@ -9,6 +9,7 @@
         public string? CNIC { get; set; }
         public string? Mobile { get; set; }
         public string? Email { get; set; }
+        public int? Company_Id { get; set; }
         public int? Designation_Id { get; set; }
         public int? HF_Id { get; set; }
         public int? Reporting_Id { get; set; }
@@ -16,6 +17,10 @@
         public DateTime? CreatedDate { get; set; }
         public string? CreatedBy { get; set; }
         public string? User_Id { get; set; }
+        public string? DesignationName { get; set; }
+        public string? healthFacilityName { get; set; }
+        public string? CompanyName { get; set; }
+
     }
 
 }

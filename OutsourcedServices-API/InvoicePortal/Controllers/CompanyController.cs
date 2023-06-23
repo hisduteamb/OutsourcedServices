@@ -35,6 +35,7 @@ namespace YourNamespace.Controllers
 
             return Ok(company);
         }
+       
 
         [HttpGet]
         public IActionResult GetPages([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
@@ -43,14 +44,17 @@ namespace YourNamespace.Controllers
             return Ok(pages);
         }
 
-        [HttpPut]
+        [HttpPost]
+        [Route("UpdateCompany")]
         public IActionResult UpdateCompany([FromBody] Company company)
         {
             var updatedCompany = _companyRepository.UpdateCompany(company);
             return Ok(updatedCompany);
         }
 
-        [HttpDelete("{id}")]
+        
+        [HttpDelete]
+        [Route("DeleteCompany/{id}")]
         public IActionResult DeleteCompany(int id)
         {
             _companyRepository.DeleteCompany(id);

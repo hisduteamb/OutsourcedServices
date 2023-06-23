@@ -11,7 +11,8 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                 children: [
                     { path: 'c', loadChildren: () => import('./demo/components/company/company.module').then(m => m.CompanyModule) },
                     {path: 's',loadChildren:()=> import('./demo/components/staff/staff.module').then(m=>m.StaffModule)},
-                    {path: 'cs',loadChildren:()=> import('./demo/components/company-service/company-service.module').then(m=>m.CompanyServiceModule)}
+                    {path: 'cs',loadChildren:()=> import('./demo/components/company-service/company-service.module').then(m=>m.CompanyServiceModule)},
+                    {path: 'in',loadChildren:()=> import('./demo/components/invoice/invoice.module').then(m=>m.InvoiceModule)}
                 
                 ]
             },
